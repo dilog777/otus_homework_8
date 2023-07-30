@@ -2,6 +2,7 @@
 
 #include "version.h"
 
-int buildNumber() {
+int buildNumber()
+{
 	return PROJECT_VERSION_PATCH;
 }
