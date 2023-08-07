@@ -1,10 +1,14 @@
-#include <gtest/gtest.h>
+#define BOOST_TEST_MODULE test_version
 
 #include "lib.h"
 
+#include <boost/test/unit_test.hpp>
 
+BOOST_AUTO_TEST_SUITE(test_boost_version)
 
-TEST(test_google_version, test_valid_build)
+BOOST_AUTO_TEST_CASE(test_valid_build)
 {
-	EXPECT_TRUE(buildNumber() > 0);
+	BOOST_CHECK(buildNumber() > 0);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
