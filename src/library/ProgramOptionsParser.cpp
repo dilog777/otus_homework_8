@@ -39,7 +39,7 @@ public:
 public:
 	ProgramOptions _opt;
 	po::variables_map _vm;
-	po::options_description _desc{ "Options" };
+	po::options_description _desc { "Options" };
 };
 
 
@@ -60,9 +60,8 @@ ProgramOptionsParser::Impl::Impl()
 
 
 ProgramOptionsParser::ProgramOptionsParser()
-	: _impl{ new Impl }
+	: _impl { new Impl }
 {
-
 }
 
 

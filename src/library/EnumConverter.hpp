@@ -7,7 +7,7 @@
 
 
 
-template<typename E>
+template <typename E>
 class EnumConverter
 {
 	static_assert(std::is_enum<E>::value, "Type is not enum");
@@ -25,7 +25,7 @@ private:
 
 
 
-template<typename E>
+template <typename E>
 EnumConverter<E>::EnumConverter(const std::initializer_list<typename boost::bimap<E, std::string>::value_type> &list)
 {
 	_bimap = BimapType(list.begin(), list.end());
@@ -33,7 +33,7 @@ EnumConverter<E>::EnumConverter(const std::initializer_list<typename boost::bima
 
 
 
-template<typename E>
+template <typename E>
 std::string EnumConverter<E>::toString(E key) const
 {
 	auto it = _bimap.left.find(key);
@@ -45,15 +45,17 @@ std::string EnumConverter<E>::toString(E key) const
 
 
 
-template<typename E>
+template <typename E>
 E EnumConverter<E>::fromString(const std::string &key, bool *isOk) const
 {
-	if (isOk) *isOk = false;
+	if (isOk)
+		*isOk = false;
 
 	auto it = _bimap.right.find(key);
 	if (it == std::end(_bimap.right))
 		return {};
 
-	if (isOk) *isOk = true;
+	if (isOk)
+		*isOk = true;
 	return it->second;
 }

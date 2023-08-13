@@ -14,12 +14,11 @@ public:
 
 	bool parse(int argc, char *argv[], std::string &error);
 	ProgramOptions programOptions() const;
-	
+
 	bool hasHelpOption() const;
 	void printHelp(std::ostream &out) const;
 
 private:
 	class Impl;
-	Impl *_impl{ nullptr };
+	Impl *_impl { nullptr };
 };
-
