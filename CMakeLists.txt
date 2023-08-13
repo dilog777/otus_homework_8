@@ -17,7 +17,7 @@ else()
 	add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
-find_package(Boost COMPONENTS program_options unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS filesystem program_options unit_test_framework REQUIRED)
 
 enable_testing()
 add_subdirectory(src)

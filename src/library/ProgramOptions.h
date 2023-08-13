@@ -14,11 +14,11 @@ struct ProgramOptions
 		MD5
 	};
 
-	std::vector<std::string> _pathList;
-	std::vector<std::string> _excludeList;
+	std::vector<std::string> _searchPaths;
+	std::vector<std::string> _excludePaths;
 	int _level { 0 };
 	int _size { 0 };
-	std::vector<std::string> _maskList;
+	std::vector<std::string> _masks;
 	int _blockSize { 0 };
 	Hash _hash { Hash::CRC32 };
 
