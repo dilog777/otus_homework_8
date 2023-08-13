@@ -51,7 +51,7 @@ ProgramOptionsParser::Impl::Impl()
 		("path,P", po::value<std::vector<std::string>>(&_opt._searchPaths), "Directories to scan (there may be several)")
 		("exclude,E", po::value<std::vector<std::string>>(&_opt._excludePaths), "Directories to exclude from scanning")
 		("level,L", po::value<int>(&_opt._level)->default_value(-1), "Scan level")
-		("size,S", po::value<int>(&_opt._size)->default_value(1), "Minimum file size")
+		("size,S", po::value<size_t>(&_opt._size)->default_value(1), "Minimum file size")
 		("mask,M", po::value<std::vector<std::string>>(&_opt._masks), "Masks of file names allowed for comparison")
 		("block,B", po::value<int>(&_opt._blockSize)->default_value(512), "Block size, which reads files")
 		("hash,H", po::value<ProgramOptions::Hash>(&_opt._hash)->default_value(ProgramOptions::Hash::CRC32), "Hashing algorithm (crc32, md5)");

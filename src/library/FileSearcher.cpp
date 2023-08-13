@@ -19,7 +19,7 @@ public:
 	std::vector<std::string> _searchPaths;
 	std::vector<fs::path> _excludePaths;
 	int _level { 0 };
-	int _size { 0 };
+	size_t _size { 0 };
 	std::vector<boost::regex> _masks;	
 
 private:

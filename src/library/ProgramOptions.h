@@ -17,7 +17,7 @@ struct ProgramOptions
 	std::vector<std::string> _searchPaths;
 	std::vector<std::string> _excludePaths;
 	int _level { 0 };
-	int _size { 0 };
+	size_t _size { 0 };
 	std::vector<std::string> _masks;
 	int _blockSize { 0 };
 	Hash _hash { Hash::CRC32 };
