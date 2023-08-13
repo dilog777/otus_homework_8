@@ -11,11 +11,13 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 if (MSVC)
 	add_compile_options(/W4)
+	add_definitions(-DBOOST_ALL_NO_LIB)
+	add_definitions(-DBOOST_ALL_DYN_LINK)
 else()
 	add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS program_options unit_test_framework REQUIRED)
 
 enable_testing()
 add_subdirectory(src)
