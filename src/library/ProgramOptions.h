@@ -11,7 +11,8 @@ struct ProgramOptions
 	{
 		Undef,
 		CRC32,
-		MD5
+		MD5,
+		SHA1
 	};
 
 	std::vector<std::string> _searchPaths;

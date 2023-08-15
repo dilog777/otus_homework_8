@@ -8,7 +8,8 @@ static const EnumConverter<ProgramOptions::Hash> HASH_CONV =
 {
 	{ ProgramOptions::Hash::Undef, "Undef" },
 	{ ProgramOptions::Hash::CRC32, "CRC32" },
-	{ ProgramOptions::Hash::MD5,   "MD5"   }
+	{ ProgramOptions::Hash::MD5,   "MD5"   },
+	{ ProgramOptions::Hash::SHA1,  "SHA1"  }
 };
 
 

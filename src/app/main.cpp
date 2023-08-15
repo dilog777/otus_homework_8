@@ -1,6 +1,8 @@
+#include <cassert>
 #include <iostream>
 #include <iterator>
 
+#include "File.h"
 #include "FileSearcher.h"
 #include "ProgramOptionsParser.h"
 
@@ -60,6 +62,30 @@ int main(int argc, char *argv[])
 
 	std::cout << "Founded: " << fileList << std::endl;
 	std::cout << "Founded size: " << fileList.size() << std::endl;
+
+	std::shared_ptr<Hasher> hasher;
+	switch (opt._hash)
+	{
+		case ProgramOptions::Hash::CRC32:
+			hasher = std::make_shared<HasherCrc32>();
+			break;
+		case ProgramOptions::Hash::MD5:
+			hasher = std::make_shared<HasherMd5>();
+			break;
+		case ProgramOptions::Hash::SHA1:
+			hasher = std::make_shared<HasherSha1>();
+			break;
+		default:
+			assert(false);
+	}
+
+	std::vector<File> files;
+	for (const auto &filePath : fileList)
+	{
+		files.emplace_back(filePath, hasher, opt._blockSize);
+	}
+
+	//bool b = files.at(0) == files.at(1);
 
 	return 0;
 }
