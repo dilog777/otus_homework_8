@@ -33,16 +33,14 @@ DublicateFinder::Impl::Impl(size_t blockSize, ProgramOptions::Hash hashType)
 
 std::vector<DublicateFinder::SameFiles> DublicateFinder::Impl::findDublicates(const std::vector<std::string> &filePaths)
 {
+	if (filePaths.size() < 2)
+		return {};
+
 	std::vector<File> files;
 	auto hasher = makeHasher(_hashType);
 	
 	for (const auto &filePath : filePaths)
 		files.emplace_back(filePath, hasher, _blockSize);
-
-//	auto compare = [](File &file1, File &file2) -> bool
-//	{
-//		return file1 < file2;
-//	};
 
 	std::sort(files.begin(), files.end());
 
