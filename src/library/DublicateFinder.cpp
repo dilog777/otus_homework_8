@@ -49,6 +49,7 @@ std::vector<DublicateFinder::SameFiles> DublicateFinder::Impl::findDublicates(co
 		SameFiles sameFiles(std::distance(beg, end));
 		std::transform(beg, end, sameFiles.begin(), [](const File &file)
 			{ return file.path(); });
+
 		result.push_back(std::move(sameFiles));
 	};
 

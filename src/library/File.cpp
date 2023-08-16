@@ -11,8 +11,8 @@ File::File(const std::string &path, const std::shared_ptr<Hasher> &hasher, size_
 {
 	_size = boost::filesystem::file_size(_path);
 	
-	_blockCount = _size / blockSize;
-	if (_size % blockSize)
+	_blockCount = _size / _blockSize;
+	if (_size % _blockSize)
 		++_blockCount;
 	
 	_blockHashes.resize(_blockCount);
@@ -88,9 +88,7 @@ bool File::operator<(File &other)
 File::BlockHash File::blockHash(size_t index)
 {
 	if (index < _blocksRead)
-	{
 		return _blockHashes.at(index);
-	}
 
 	if (index == _blocksRead)
 	{

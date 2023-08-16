@@ -27,8 +27,8 @@ private:
 
 template <typename E>
 EnumConverter<E>::EnumConverter(const std::initializer_list<typename boost::bimap<E, std::string>::value_type> &list)
+	: _bimap { list.begin(), list.end() }
 {
-	_bimap = BimapType(list.begin(), list.end());
 }
 
 
@@ -57,5 +57,6 @@ E EnumConverter<E>::fromString(const std::string &key, bool *isOk) const
 
 	if (isOk)
 		*isOk = true;
+
 	return it->second;
 }

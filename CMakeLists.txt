@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-find_package(Boost COMPONENTS filesystem program_options regex unit_test_framework REQUIRED)
+find_package(Boost COMPONENTS filesystem program_options regex REQUIRED)
 
 if (MSVC)
 	add_compile_options(/W4)
@@ -19,7 +19,6 @@ else()
 	add_compile_options(-Wall -Wextra -pedantic -Werror)
 endif()
 
-enable_testing()
 add_subdirectory(src)
 
 install(TARGETS bayan RUNTIME DESTINATION bin)
