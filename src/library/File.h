@@ -15,10 +15,14 @@ public:
 	using BlockHash = Hasher::Hash;
 
 	File(const std::string &path, const std::shared_ptr<Hasher> &hasher, size_t blockSize);
-	~File();
 
-	bool operator==(const File &other) const;
-	bool operator!=(const File &other) const;
+	std::string path() const;
+	size_t size() const;
+
+	bool operator==(File &other);
+	bool operator!=(File &other);
+
+	bool operator<(File &other);
 
 private:
 	std::string _path;
@@ -28,13 +32,13 @@ private:
 	size_t _blockSize { 0 };
 
 	size_t _blockCount { 0 };
-	mutable size_t _blocksRead { 0 };
-	mutable std::vector<BlockHash> _blockHashes;
-	mutable std::shared_ptr<std::ifstream> _fileStream;
+	size_t _blocksRead { 0 };
+	std::vector<BlockHash> _blockHashes;
+	std::unique_ptr<std::ifstream> _fileStream;
 
-	BlockHash blockHash(size_t index) const;
+	BlockHash blockHash(size_t index);
 
-	void streamOpen() const;
-	void streamClose() const;
+	void streamOpen();
+	void streamClose();
 };
 

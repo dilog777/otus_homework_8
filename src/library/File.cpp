@@ -20,14 +20,21 @@ File::File(const std::string &path, const std::shared_ptr<Hasher> &hasher, size_
 
 
 
-File::~File()
+std::string File::path() const
 {
-	streamClose();
+	return _path;
 }
 
 
 
-bool File::operator==(const File &other) const
+size_t File::size() const
+{
+	return _size;
+}
+
+
+
+bool File::operator==(File &other)
 {
 	if (_size != other._size)
 		return false;
@@ -49,14 +56,36 @@ bool File::operator==(const File &other) const
 
 
 
-bool File::operator!=(const File &other) const
+bool File::operator!=(File &other)
 {
 	return !(*this == other);
 }
 
 
 
-File::BlockHash File::blockHash(size_t index) const
+bool File::operator<(File &other)
+{
+	if (_size != other._size)
+		return _size < other._size;
+
+	bool isLess = false;
+	for (size_t i = 0; i < _blockCount; ++i)
+	{
+		if (blockHash(i) != other.blockHash(i))
+		{
+			isLess = (blockHash(i) < other.blockHash(i));
+			break;
+		}
+	}
+
+	streamClose();
+	other.streamClose();
+	return isLess;
+}
+
+
+
+File::BlockHash File::blockHash(size_t index)
 {
 	if (index < _blocksRead)
 	{
@@ -80,18 +109,18 @@ File::BlockHash File::blockHash(size_t index) const
 
 
 
-void File::streamOpen() const
+void File::streamOpen()
 {
 	if (!_fileStream)
 	{
-		_fileStream = std::make_shared<std::ifstream>(_path, std::ios::binary);
+		_fileStream = std::make_unique<std::ifstream>(_path, std::ios::binary);
 		_fileStream->seekg(_blockSize * _blocksRead, std::ifstream::beg);
 	}
 }
 
 
 
-void File::streamClose() const
+void File::streamClose()
 {
 	if (_fileStream)
 	{
